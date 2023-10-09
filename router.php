@@ -1,6 +1,6 @@
 <?php
+include_once "app/controllers/task.controller.php";
 
-require_once "app/tasks.php";
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
@@ -20,20 +20,28 @@ $params = explode("/", $action);
 
 switch($params[0]){
     case "listar":
-        showTasks();
+        $controller = new taskController();
+        $controller -> showTasks();
         break;
 
     case "agregar":
-        addTask();
+        $controller = new taskController();
+        $controller -> addTask();
         break;
 
     case "eliminar";
-    removeTask($params[1]);
-        break;
+    $controller = new taskController();
+    $id = $params[1];
+    $controller -> removeTask($id);
+
+    break;
 
     case "finalizar";
-    finishTask($params[1]);
+    $controller = new taskController();
+    $id = $params[1];
+    $controller -> finishTask($id);
     break;
+
     default:
     echo "404 error";
         break;
