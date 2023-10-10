@@ -1,5 +1,7 @@
 <?php
-include_once "app/controllers/task.controller.php";
+require_once './app/controllers/task.controller.php';
+require_once './app/controllers/about.controller.php';
+require_once './app/controllers/auth.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -18,31 +20,41 @@ if(!empty($_GET["action"])){
 $params = explode("/", $action);
 
 
-switch($params[0]){
-    case "listar":
-        $controller = new taskController();
-        $controller -> showTasks();
+
+switch ($params[0]) {
+    case 'listar':
+        $controller = new TaskController();
+        $controller->showTasks();
         break;
-
-    case "agregar":
-        $controller = new taskController();
-        $controller -> addTask();
+    case 'agregar':
+        $controller = new TaskController();
+        $controller->addTask();
         break;
-
-    case "eliminar";
-    $controller = new taskController();
-    $id = $params[1];
-    $controller -> removeTask($id);
-
-    break;
-
-    case "finalizar";
-    $controller = new taskController();
-    $id = $params[1];
-    $controller -> finishTask($id);
-    break;
-
-    default:
-    echo "404 error";
+    case 'eliminar':
+        $controller = new TaskController();
+        $controller->removeTask($params[1]);
+        break;
+    case 'finalizar':
+        $controller = new TaskController();
+        $controller->finishTask($params[1]);
+        break;
+    case 'about':
+        $controller = new AboutController();
+        $controller->showAbout();
+        break;
+    case 'login':
+        $controller = new AuthController();
+        $controller->showLogin(); 
+        break;
+    case 'auth':
+        $controller = new AuthController();
+        $controller->auth();
+        break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
+        break;
+    default: 
+        echo "404 Page Not Found";
         break;
 }

@@ -1,62 +1,57 @@
-<?php 
-include_once "./app/models/task.model.php";
-include_once "./app/views/task.view.php";
-class taskController {
+<?php
+require_once './app/models/task.model.php';
+require_once './app/views/task.view.php';
+require_once './app/helpers/auth.helper.php';
 
+class TaskController {
     private $model;
     private $view;
 
-    function __construct()
-    {
-        $this-> model = new taskModel();
-        $this -> view = new taskView();
+    public function __construct() {
+        // verifico logueado
+        AuthHelper::verify();
+
+        $this->model = new TaskModel();
+        $this->view = new TaskView();
     }
 
-    function showTasks(){
-        require "templates/header.php";
-    
-        //obtengo las tareas del modelo
+    public function showTasks() {
+        // obtengo tareas del controlador
         $tasks = $this->model->getTasks();
         
-        //actualizo la vista
-        $this-> view -> showTasks($tasks);
+        // muestro las tareas desde la vista
+        $this->view->showTasks($tasks);
     }
 
-      
+    public function addTask() {
 
-function addTask(){
-    //obtengo los datos del usuario
-    $title = $_POST ["title"];
-    $priority = $_POST["priority"];
-    $description = $_POST ["description"];
-    
-    //inserto en la DB
-     $id = $this ->model->insertTask($title, $description, $priority);
+        // obtengo los datos del usuario
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $priority = $_POST['priority'];
 
-     if ($id) {
-        // redirigo la usuario a la pantalla principal
+        // validaciones
+        if (empty($title) || empty($priority)) {
+            $this->view->showError("Debe completar todos los campos");
+            return;
+        }
+
+        $id = $this->model->insertTask($title, $description, $priority);
+        if ($id) {
+            header('Location: ' . BASE_URL);
+        } else {
+            $this->view->showError("Error al insertar la tarea");
+        }
+    }
+
+    function removeTask($id) {
+        $this->model->deleteTask($id);
         header('Location: ' . BASE_URL);
-    } else {
-
-    $this -> view -> showError("Faltan datos");
-    die();
     }
+    
+    function finishTask($id) {
+        $this->model->updateTask($id);
+        header('Location: ' . BASE_URL);
+    }
+
 }
-
-
-function removeTask ($id){
-    $this->model->deleteTask($id);
-    header('Location: ' . BASE_URL);
-}
-
-
-
-function finishTask($id){
-
-    $this ->model->updateTask($id);
-    header('Location: ' . BASE_URL);
-  
-  }
-  
-}
-
