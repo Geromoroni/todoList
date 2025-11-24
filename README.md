@@ -8,12 +8,10 @@ El objetivo era crear una aplicación funcional y bien estructurada, siguiendo b
 
 
                       | Login | 
-                      | :---: |
-| ![Pantalla de Login](assets/crud-php-login.png)
+              (assets/crud-php-login.png)
 
                       | Tareas |
-                      | :---: | 
-| ![Página principal con tareas](assets/crud-php-tareas.png) 
+              (assets/crud-php-tareas.png) 
 
 ## 🛠️ Tecnologías Utilizadas
 
