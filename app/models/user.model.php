@@ -13,4 +13,13 @@ class UserModel {
 
         return $query->fetch(PDO::FETCH_OBJ);
     }
+
+    /**
+     * Inserta un nuevo usuario en la base de datos.
+     */
+    public function insert($email, $password) {
+        $query = $this->db->prepare('INSERT INTO usuarios (email, password) VALUES (?, ?)');
+        $query->execute([$email, $password]);
+        return $this->db->lastInsertId();
+    }
 }

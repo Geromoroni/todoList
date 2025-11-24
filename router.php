@@ -7,7 +7,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 
 
 
-$action = "listar";
+$action = "login"; //defecto a login
 
 if(!empty($_GET["action"])){
     $action = $_GET["action"];
@@ -49,6 +49,14 @@ switch ($params[0]) {
     case 'auth':
         $controller = new AuthController();
         $controller->auth();
+        break;
+    case 'registro': // Muestra el formulario de registro
+        $controller = new AuthController();
+        $controller->showRegister();
+        break;
+    case 'registrar': // Procesa el formulario de registro
+        $controller = new AuthController();
+        $controller->register();
         break;
     case 'logout':
         $controller = new AuthController();
