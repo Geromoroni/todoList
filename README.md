@@ -7,7 +7,6 @@ El objetivo era crear una aplicación funcional y bien estructurada, siguiendo b
 
 
 
-
 | Pantalla de Login | Tareas |
 |:---:|:---:|
 | ![Pantalla de Login](assets/crud-php-login.png) | ![Página principal con tareas](assets/crud-php-tareas.png) |
