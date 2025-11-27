@@ -11,14 +11,14 @@ El objetivo era crear una aplicación funcional y bien estructurada, siguiendo b
 |:---:|:---:|
 | ![Pantalla de Login](assets/crud-php-login.png) | ![Página principal con tareas](assets/crud-php-tareas.png) |
 
-## 🛠️ Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 *   **Backend:** PHP
 *   **Base de Datos:** MySQL (con PDO para la conexión)
 *   **Frontend:** HTML, CSS, Bootstrap 5
 *   **Arquitectura:** MVC (Modelo-Vista-Controlador)
 
-## ✨ Funcionalidades Clave
+##  Funcionalidades Clave
 
 *   **Gestión de Usuarios:** Sistema completo de registro e inicio de sesión.
 *   **Operaciones CRUD:** Los usuarios pueden **C**rear, **L**eer, **A**ctualizar (marcar como finalizada) y **E**liminar tareas.
